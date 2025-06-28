@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     public function register (Request $request){
         $incomingFields = $request->validate([
-            'name'=>'required|min:3|max:32'|Rule::unique('users','name'),
-            'email'=>'required|email'|Rule::unique('users','email'),
-            'password'=>'required|min:8|max:32',
+            'name'=> ['required', 'min:3', 'max:32', Rule::unique('users', 'name')],
+            'email'=>['required', 'email', Rule::unique('users', 'email')],
+            'password'=>['required', 'min:8', 'max:32'],
         ]);
         $incomingFields['password'] = bcrypt($incomingFields['password']);
       $user=  User::create($incomingFields);
