@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
-{
+{   public function logout (Request $request){
+        auth()->logout();
+        return redirect('/');
+    }
+
+
     public function register (Request $request){
         $incomingFields = $request->validate([
             'name'=> ['required', 'min:3', 'max:32', Rule::unique('users', 'name')],
