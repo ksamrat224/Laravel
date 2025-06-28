@@ -14,7 +14,8 @@ class UserController extends Controller
             'password'=>'required|min:8|max:32',
         ]);
         $incomingFields['password'] = bcrypt($incomingFields['password']);
-        User::create($incomingFields);
-        return "thanks for registering";
+      $user=  User::create($incomingFields);
+      auth()->login($user);
+      return redirect('/');
     }
 }
