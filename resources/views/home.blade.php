@@ -7,7 +7,10 @@
 </head>
 
 <body>
-    <div style="border:3px solid black;">
+    @auth 
+  <p>Congrats you are logged in!!! </p>
+    @else  
+<div style="border:3px solid black;">
         <h2>Register</h2>
         <form action="/register" method="POST">
             @csrf
@@ -18,6 +21,10 @@
 
         </form>
     </div>
+    @endauth
+        
+
+    
 </body>
 
 </html>
